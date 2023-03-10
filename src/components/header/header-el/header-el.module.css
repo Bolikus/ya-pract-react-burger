@@ -1,0 +1,35 @@
+.element {
+  /* navigation link/active */
+
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 20px;
+  gap: 8px;
+
+  height: 56px;
+
+  /* interface/modal-bg */
+
+  background: #1c1c21;
+  /* interface/accent */
+
+  /* border: 1px dashed #4c4cff; */
+  border-radius: 40px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  text-decoration: none;
+}
+
+.light {
+  color: #f2f2f3;
+}
