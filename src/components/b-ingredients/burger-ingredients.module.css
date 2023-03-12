@@ -1,0 +1,47 @@
+.first_row {
+  display: flex;
+  /* justify-content: start; */
+  gap: 8px;
+  grid-column: 1/2;
+  margin-left: 8px;
+}
+
+.second_row {
+  display: flex;
+  /* justify-content: start; */
+  gap: 8px;
+  grid-column: 2/2;
+  margin-left: 8px;
+}
+
+.al_left {
+  text-align: left;
+}
+.burger_ingredients {
+  position: relative;
+  width: 50%;
+}
+
+.burger_ingredients_groups {
+  position: relative;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: calc(100vh - 390 px);
+  height: 100%;
+}
+
+/* .burger_ingredients {
+    position: relative;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: calc(100vh - 390 px);
+    height: 100%;
+  } */

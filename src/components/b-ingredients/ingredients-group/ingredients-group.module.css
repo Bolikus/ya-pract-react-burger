@@ -1,0 +1,23 @@
+.burger_ingredients {
+  position: relative;
+}
+
+.ingredients_group_title {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px 24px;
+}
+
+.ingredients_group_item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px 24px;
+}

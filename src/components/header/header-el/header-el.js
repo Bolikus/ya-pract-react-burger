@@ -8,9 +8,10 @@ import heStyles from "./header-el.module.css";
 function HeaderElement(props) {
   return (
     <a href="/" className={heStyles.element}>
-      {/* <BurgerIcon type="primary" /> */}
       {props.icon}
-      <p className={heStyles.light}>{props.text}</p>
+      {/* <p className={heStyles.light}>{props.text}</p> */}
+      {/* <p className={`text_color_inactive ${heStyles.light}`}>{props.text}</p> */}
+      <p className="text_color_inactive">{props.text}</p>
     </a>
   );
 }
