@@ -3,6 +3,7 @@ import IngredientsGroup from "./ingredients-group/ingredients-group.js";
 import bgStyle from "./burger-ingredients.module.css";
 
 function BurgerIngrediens(props) {
+  const { data } = props;
   // console.log(props.data);
   return (
     <section className={`mt-10 ${bgStyle.burger_ingredients}`}>
@@ -10,22 +11,23 @@ function BurgerIngrediens(props) {
         Соберите бургер
       </div>
       <Tabs />
-      <div className={`mt-10 ${bgStyle.burger_ingredients_groups}`}>
+      <div
+        className={`mt-10 custom-scroll ${bgStyle.burger_ingredients_groups}`}
+      >
         <IngredientsGroup
-          className={`mt-10 ${bgStyle.burger_ingredients_groups}`}
           type="bun"
           typeName="Булки"
-          ingredients={props.data.filter((item) => item.type === "bun")}
+          ingredients={data.filter((item) => item.type === "bun")}
         />
         <IngredientsGroup
           type="sauce"
           typeName="Соусы"
-          ingredients={props.data.filter((item) => item.type === "sauce")}
+          ingredients={data.filter((item) => item.type === "sauce")}
         />
         <IngredientsGroup
           type="main"
           typeName="Начинки"
-          ingredients={props.data.filter((item) => item.type === "main")}
+          ingredients={data.filter((item) => item.type === "main")}
         />
       </div>
     </section>

@@ -1,11 +1,14 @@
+import ConstructorItems from "./constructor-items/constructor-items";
+import ConstructorTotal from "./constructor-total/constructor-total";
+
 import Style from "./burger-constructor.module.css";
 
-function BurgerConstructor() {
+function BurgerConstructor(props) {
+  const { data } = props;
   return (
-    <section className={Style.burger_constructor}>
-      <p className="text text_type_main-large">
-        Here will be BurgerConstructor
-      </p>
+    <section className={`mt-25 ${Style.burger_constructor}`}>
+      <ConstructorItems data={data} />
+      <ConstructorTotal />
     </section>
   );
 }

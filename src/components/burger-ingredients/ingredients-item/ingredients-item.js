@@ -7,17 +7,19 @@ import {
 function IngredientItem(props) {
   const { ingredient } = props;
   return (
-    <div className={Styles.ingredientsItem}>
-      <div className={`ml-4 mr-4 ${Styles.ingredientsItem_image}`}>
+    <div className={Styles.ingredients_item}>
+      <div className={`ml-4 mr-4 ${Styles.ingredients_item_image}`}>
         <img src={ingredient.image} alt={props.ingredient.name} />
       </div>
-      <div className={`mt-1 mb-1 ${Styles.ingredientsItem_price}`}>
+      <div className={`mt-1 mb-1 ${Styles.price}`}>
         <span className={`text text_type_digits-default`}>
           {ingredient.price}
         </span>
         <CurrencyIcon type="primary" />
       </div>
-      <p>{ingredient.name}</p>
+      <div>{ingredient.name}</div>
+
+      <Counter count={1} size="default" extraClass="m-1" />
     </div>
   );
 }

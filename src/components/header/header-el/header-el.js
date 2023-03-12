@@ -9,8 +9,6 @@ function HeaderElement(props) {
   return (
     <a href="/" className={heStyles.element}>
       {props.icon}
-      {/* <p className={heStyles.light}>{props.text}</p> */}
-      {/* <p className={`text_color_inactive ${heStyles.light}`}>{props.text}</p> */}
       <p className="text_color_inactive">{props.text}</p>
     </a>
   );
