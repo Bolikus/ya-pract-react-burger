@@ -10,7 +10,7 @@ import headerStyles from "./app-header.module.css";
 
 function AppHeader() {
   return (
-    <div className={headerStyles.container_grid}>
+    <header className={headerStyles.container_grid}>
       <div className={headerStyles.left_col}>
         <HeaderElement icon={<BurgerIcon />} text={"Конструктор"} />
         <HeaderElement icon={<ListIcon />} text={"Лента заказов"} />
@@ -21,7 +21,7 @@ function AppHeader() {
       <div className={headerStyles.right_col}>
         <HeaderElement icon={<ProfileIcon />} text={"Личный кабинет"} />
       </div>
-    </div>
+    </header>
   );
 }
 

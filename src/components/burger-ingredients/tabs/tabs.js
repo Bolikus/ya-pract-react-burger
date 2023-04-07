@@ -1,6 +1,7 @@
 // import React from "react";
 // import { useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import tabsStyles from "./tabs.module.css";
 
 function Tabs() {
   //   const [current, willBesetCurrent] = React.useState("one");
@@ -9,7 +10,7 @@ function Tabs() {
     console.log("I am willBesetCurrent function");
   };
   return (
-    <div style={{ display: "flex" }}>
+    <div className={tabsStyles.tabs}>
       <Tab value="one" active={current === "one"} onClick={willBesetCurrent}>
         Булки
       </Tab>
