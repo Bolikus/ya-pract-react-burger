@@ -1,7 +1,4 @@
-import {
-  BurgerIcon,
-  Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
 import heStyles from "./header-el.module.css";
 
@@ -13,5 +10,10 @@ function HeaderElement(props) {
     </a>
   );
 }
+
+HeaderElement.propTypes = {
+  text: PropTypes.string,
+  icon: PropTypes.object,
+};
 
 export default HeaderElement;

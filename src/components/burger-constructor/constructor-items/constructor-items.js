@@ -1,6 +1,6 @@
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-
 import Styles from "./constructor-items.module.css";
+import { ingredientPropType } from "../../../utils/prop-types";
 
 function ConstructorItems(props) {
   const { data } = props;
@@ -14,7 +14,7 @@ function ConstructorItems(props) {
         thumbnail={data[0].image}
       />
       <div className={`custom-scroll ${Styles.dyn_items}`}>
-        {data.map((ingredient: any) => {
+        {data.map((ingredient, _index) => {
           return (
             ingredient.type !== "bun" && (
               <ConstructorElement
@@ -37,5 +37,9 @@ function ConstructorItems(props) {
     </div>
   );
 }
+
+ConstructorItems.propType = {
+  data: ingredientPropType.isRequired,
+};
 
 export default ConstructorItems;

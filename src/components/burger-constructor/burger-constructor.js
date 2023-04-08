@@ -1,5 +1,6 @@
 import ConstructorItems from "./constructor-items/constructor-items";
 import ConstructorTotal from "./constructor-total/constructor-total";
+import { ingredientPropType } from "../../utils/prop-types";
 
 import Style from "./burger-constructor.module.css";
 
@@ -12,5 +13,9 @@ function BurgerConstructor(props) {
     </section>
   );
 }
+
+BurgerConstructor.propType = {
+  data: ingredientPropType.isRequired,
+};
 
 export default BurgerConstructor;

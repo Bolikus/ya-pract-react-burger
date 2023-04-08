@@ -121,10 +121,8 @@ export const data = [
     calories: 986,
     price: 300,
     image: "https://code.s3.yandex.net/react/code/mineral_rings.png",
-    image_mobile:
-      "https://code.s3.yandex.net/react/code/mineral_rings-mobile.png",
-    image_large:
-      "https://code.s3.yandex.net/react/code/mineral_rings-large.png",
+    image_mobile: "https://code.s3.yandex.net/react/code/mineral_rings-mobile.png",
+    image_large: "https://code.s3.yandex.net/react/code/mineral_rings-large.png",
     __v: 0,
   },
   {
