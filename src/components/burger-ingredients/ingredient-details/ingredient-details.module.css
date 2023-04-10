@@ -1,0 +1,35 @@
+.ingredientsDetails {
+  max-width: 520px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+}
+.ingredientsDetails_image img {
+  width: 100%;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+}
+.ingredientsDetails_title {
+  text-align: center;
+}
+.ingredientsDetails_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+}
+.ingredientsDetails_info_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ingredientsDetails_info_item span {
+  display: block;
+  text-align: center;
+}

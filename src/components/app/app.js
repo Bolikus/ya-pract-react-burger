@@ -16,7 +16,7 @@ function App() {
       .then(setData)
       .catch(() => setHasError(true))
       .finally(() => setIsLoading(false));
-  });
+  }, []);
 
   return (
     <div className={mainStyle.App}>

@@ -1,27 +1,26 @@
 // import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import tabsStyles from "./tabs.module.css";
 
 function Tabs() {
-  //   const [current, willBesetCurrent] = React.useState("one");
-  const current = "one";
-  const willBesetCurrent = () => {
-    console.log("I am willBesetCurrent function");
+  const [currentTab, setCurrentTab] = useState("buns");
+
+  const onTabClick = (tab) => {
+    setCurrentTab(tab);
+    const element = document.getElementById(tab);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+
   return (
     <div className={tabsStyles.tabs}>
-      <Tab value="one" active={current === "one"} onClick={willBesetCurrent}>
+      <Tab value="buns" active={currentTab === "buns"} onClick={onTabClick}>
         Булки
       </Tab>
-      <Tab value="two" active={current === "two"} onClick={willBesetCurrent}>
+      <Tab value="sauce" active={currentTab === "sauce"} onClick={onTabClick}>
         Соусы
       </Tab>
-      <Tab
-        value="three"
-        active={current === "three"}
-        onClick={willBesetCurrent}
-      >
+      <Tab value="main" active={currentTab === "main"} onClick={onTabClick}>
         Начинки
       </Tab>
     </div>
