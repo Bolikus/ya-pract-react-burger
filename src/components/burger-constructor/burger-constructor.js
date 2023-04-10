@@ -1,5 +1,6 @@
 import ConstructorItems from "./constructor-items/constructor-items";
 import ConstructorTotal from "./constructor-total/constructor-total";
+import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
@@ -31,8 +32,8 @@ function BurgerConstructor(props) {
   );
 }
 
-BurgerConstructor.propType = {
-  data: ingredientPropType.isRequired,
+BurgerConstructor.propTypes = {
+  data: PropTypes.arrayOf(ingredientPropType).isRequired,
 };
 
 export default BurgerConstructor;

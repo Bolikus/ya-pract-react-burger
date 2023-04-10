@@ -1,5 +1,6 @@
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import Styles from "./constructor-items.module.css";
+import PropTypes from "prop-types";
 import { ingredientPropType } from "../../../utils/prop-types";
 
 function ConstructorItems(props) {
@@ -38,8 +39,8 @@ function ConstructorItems(props) {
   );
 }
 
-ConstructorItems.propType = {
-  data: ingredientPropType.isRequired,
+ConstructorItems.propTypes = {
+  data: PropTypes.arrayOf(ingredientPropType).isRequired,
 };
 
 export default ConstructorItems;

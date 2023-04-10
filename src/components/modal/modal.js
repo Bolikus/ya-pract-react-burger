@@ -12,8 +12,8 @@ const Modal = (props) => {
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.keyCode === 27) {
-        closeModal();
+      {
+        e.key === "Escape" && closeModal();
       }
     };
     document.addEventListener("keydown", handleEscape);
@@ -32,7 +32,7 @@ const Modal = (props) => {
               <button className={ModalStyles.modal_close} onClick={closeModal}>
                 <CloseIcon type="primary" />
               </button>
-              {title && <div className={`mt-3 text text_type_main-large`}>{title}</div>}
+              {title && <div className={`mt-3 ml-15 text text_type_main-large`}>{title}</div>}
               <div>{children}</div>
             </div>
           </div>

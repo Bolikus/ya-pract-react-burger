@@ -5,6 +5,7 @@ import IngredientsGroup from "./ingredients-group/ingredients-group.js";
 import Modal from "../modal/modal.js";
 import IngredientDetails from "./ingredient-details/ingredient-details.js";
 import bgStyle from "./burger-ingredients.module.css";
+import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types.js";
 
 function BurgerIngrediens(props) {
@@ -43,7 +44,7 @@ function BurgerIngrediens(props) {
         </div>
       </section>
       {ingredienInModal && (
-        <Modal closeModal={closeIngredientModal}>
+        <Modal title="Детали ингредиента" closeModal={closeIngredientModal}>
           <IngredientDetails ingredienInModal={ingredienInModal} />
         </Modal>
       )}
@@ -51,8 +52,8 @@ function BurgerIngrediens(props) {
   );
 }
 
-BurgerIngrediens.propType = {
-  data: ingredientPropType.isRequired,
+BurgerIngrediens.propTypes = {
+  data: PropTypes.arrayOf(ingredientPropType).isRequired,
 };
 
 export default BurgerIngrediens;
