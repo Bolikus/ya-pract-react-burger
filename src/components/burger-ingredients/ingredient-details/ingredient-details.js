@@ -3,7 +3,7 @@ import Styles from "./ingredient-details.module.css";
 import { ingredientPropType } from "../../../utils/prop-types";
 // import PropTypes from "prop-types";
 
-const IngredientsDetails = (props) => {
+const IngredientDetails = (props) => {
   const {
     ingredienInModal = {
       name: "title",
@@ -16,27 +16,25 @@ const IngredientsDetails = (props) => {
   } = props;
 
   return (
-    <div className={Styles.ingredientsDetails}>
-      <div className={`ml-5 mr-5 ${Styles.ingredientsDetails_image}`}>
+    <div className={Styles.IngredientDetails}>
+      <div className={`ml-5 mr-5 ${Styles.IngredientDetails_image}`}>
         <img src={ingredienInModal.image_large} alt={ingredienInModal.name} />
       </div>
-      <div className={`mt-4 text text_type_main-medium ${Styles.ingredientsDetails_title}`}>
-        {ingredienInModal.name}
-      </div>
-      <div className={`mt-8 mb-5 ${Styles.ingredientsDetails_info}`}>
-        <div className={`text text_type_main-default text_color_inactive ${Styles.ingredientsDetails_info_item}`}>
+      <div className={`mt-4 text text_type_main-medium ${Styles.IngredientDetails_title}`}>{ingredienInModal.name}</div>
+      <div className={`mt-8 mb-5 ${Styles.IngredientDetails_info}`}>
+        <div className={`text text_type_main-default text_color_inactive ${Styles.IngredientDetails_info_item}`}>
           <span>Калории,ккал</span>
           <span>{ingredienInModal.calories}</span>
         </div>
-        <div className={`text text_type_main-default text_color_inactive ${Styles.ingredientsDetails_info_item}`}>
+        <div className={`text text_type_main-default text_color_inactive ${Styles.IngredientDetails_info_item}`}>
           <span>Белки, г</span>
           <span>{ingredienInModal.proteins}</span>
         </div>
-        <div className={`text text_type_main-default text_color_inactive ${Styles.ingredientsDetails_info_item}`}>
+        <div className={`text text_type_main-default text_color_inactive ${Styles.IngredientDetails_info_item}`}>
           <span>Жиры, г</span>
           <span>{ingredienInModal.fat}</span>
         </div>
-        <div className={`text text_type_main-default text_color_inactive ${Styles.ingredientsDetails_info_item}`}>
+        <div className={`text text_type_main-default text_color_inactive ${Styles.IngredientDetails_info_item}`}>
           <span>Углеводы, г</span>
           <span>{ingredienInModal.carbohydrates}</span>
         </div>
@@ -45,8 +43,8 @@ const IngredientsDetails = (props) => {
   );
 };
 
-IngredientsDetails.propTypes = {
+IngredientDetails.propTypes = {
   ingredienInModal: ingredientPropType.isRequired,
 };
 
-export default IngredientsDetails;
+export default IngredientDetails;
