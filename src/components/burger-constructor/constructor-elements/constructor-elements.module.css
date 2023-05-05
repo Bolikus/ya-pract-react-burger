@@ -1,0 +1,121 @@
+/* .all_items {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.dyn_items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: calc(100vh - 642px);
+  height: 100%;
+  width: 100%;
+} */
+/* 
+.constructorElements_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+.constructorElements_item:hover {
+  cursor: pointer;
+} */
+
+.constructorElements {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+.constructorElements__default {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.constructorElements__default_icon img {
+  width: 100px;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.constructorElements__default_title {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+}
+.constructorElements__defaultBun {
+  padding: 16px 24px;
+  display: inline-block;
+  border-radius: var(--common-border-radius-s);
+  background: var(--background-element);
+  max-width: 536px;
+  width: 100%;
+  min-height: 80px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #f2f2f3;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+.constructorElements__defaultBun_top {
+  border-radius: var(--top-constructor-item-border-radius);
+}
+.constructorElements__defaultBun_bottom {
+  border-radius: var(--bottom-constructor-item-border-radius);
+}
+.constructorElements__items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: calc(100vh - 642px);
+  min-height: 50px;
+  height: auto;
+  padding-right: 4px;
+  width: 100%;
+}
+.constructorElements__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+.constructorElements__item:hover {
+  cursor: pointer;
+}
+.constructorElements__bun {
+  margin-right: 16px;
+  margin-left: 26px;
+  width: 100%;
+}
+.constructorElements__bun_bottom img {
+  transform: rotate(180deg);
+}
+.constructorElements__hover {
+  opacity: 0.5;
+}

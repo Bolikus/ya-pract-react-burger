@@ -1,4 +1,5 @@
-import ConstructorItems from "./constructor-items/constructor-items";
+// import ConstructorItems from "./constructor-items/constructor-items";
+import ConstructorElements from "./constructor-elements/constructor-elements";
 import ConstructorTotal from "./constructor-total/constructor-total";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types";
@@ -21,7 +22,7 @@ function BurgerConstructor(props) {
   const { data } = props;
   return (
     <section className={`mt-25 ${Style.burger_constructor}`}>
-      <ConstructorItems data={data} />
+      <ConstructorElements data={data} />
       <ConstructorTotal openOrderModal={openOrderModal} />
       {isOrderModalOpen && (
         <Modal closeModal={closeOrderModal}>
