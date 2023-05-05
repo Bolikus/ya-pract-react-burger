@@ -1,0 +1,21 @@
+.all_items {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.dyn_items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: calc(100vh - 642px);
+  height: 100%;
+}

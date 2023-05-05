@@ -1,0 +1,16 @@
+.ingredients_item {
+  position: relative;
+  width: calc((100% / 2) - 12px);
+}
+
+.ingredients_item_image {
+  position: relative;
+  width: calc((100% / 2) - 12px);
+  text-align: center;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
