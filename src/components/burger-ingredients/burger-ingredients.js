@@ -7,14 +7,19 @@ import IngredientDetails from "./ingredient-details/ingredient-details.js";
 import bgStyle from "./burger-ingredients.module.css";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types.js";
+import { useSelector } from "react-redux";
 
 function BurgerIngrediens(props) {
-  const { data } = props;
+  const { ingredients } = props;
   // const [modal, setModal] = useState(false);
-  const [ingredienInModal, setIngredientInModal] = useState();
-  const buns = useMemo(() => data.filter((item) => item.type === "bun"), [data]);
-  const sauce = useMemo(() => data.filter((item) => item.type === "sauce"), [data]);
-  const main = useMemo(() => data.filter((item) => item.type === "main"), [data]);
+  // const [ingredienInModal, setIngredientInModal] = useState();
+  const ingredienInModal = useSelector((state) => state.burgerIngredientDetails);
+
+  // console.log(ingredienInModal);
+
+  const buns = useMemo(() => ingredients.filter((item) => item.type === "bun"), [ingredients]);
+  const sauce = useMemo(() => ingredients.filter((item) => item.type === "sauce"), [ingredients]);
+  const main = useMemo(() => ingredients.filter((item) => item.type === "main"), [ingredients]);
 
   // const openModal = () => {
   //   setIngredientInModal(true);
@@ -24,12 +29,12 @@ function BurgerIngrediens(props) {
   //   setIngredientInModal(false);
   // };
 
-  const closeIngredientModal = () => {
-    setIngredientInModal();
-  };
+  // const closeIngredientModal = () => {
+  //   setIngredientInModal();
+  // };
 
   const getIngredientInfo = (id) => {
-    return setIngredientInModal(data.find((item) => item._id === id));
+    // return setIngredientInModal(ingredients.find((item) => item._id === id));
   };
 
   return (
@@ -43,9 +48,10 @@ function BurgerIngrediens(props) {
           <IngredientsGroup typeName="Начинки" ingredients={main} idName="main" onIngredientClick={getIngredientInfo} />
         </div>
       </section>
-      {ingredienInModal && (
-        <Modal title="Детали ингредиента" closeModal={closeIngredientModal}>
-          <IngredientDetails ingredienInModal={ingredienInModal} />
+      {ingredienInModal.ingredient && (
+        // <Modal title="Детали ингредиента" closeModal={closeIngredientModal}>
+        <Modal title="Детали ингредиента">
+          <IngredientDetails ingredienInModal={ingredienInModal.ingredient} />
         </Modal>
       )}
     </>
@@ -53,7 +59,7 @@ function BurgerIngrediens(props) {
 }
 
 BurgerIngrediens.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired,
+  ingredients: PropTypes.arrayOf(ingredientPropType).isRequired,
 };
 
 export default BurgerIngrediens;

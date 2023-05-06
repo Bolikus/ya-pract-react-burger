@@ -88,20 +88,23 @@ import { ingredientPropType } from "../../../utils/prop-types";
 
 const ConstructorItem = (props) => {
   // const { id, item, index, moveIngredient } = props;
-  const { ingredient } = props;
+  // const { ingredient } = props;
+
   return (
     <div className={Styles.constructorElements__item}>
       <DragIcon type="primary" />
       <ConstructorElement
-        key={ingredient._id}
-        text={ingredient.name}
-        price={ingredient.price}
-        thumbnail={ingredient.image}
+      // key={ingredient._id}
+      // text={ingredient.name}
+      // price={ingredient.price}
+      // thumbnail={ingredient.image}
       />
     </div>
   );
 };
 
-// ConstructorItem.propTypes = {};
+// ConstructorItem.propTypes = {
+//   ingredient: ingredientPropType.isRequired,
+// };
 
 export default ConstructorItem;

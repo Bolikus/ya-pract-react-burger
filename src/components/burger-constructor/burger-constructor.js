@@ -7,9 +7,14 @@ import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
 import Style from "./burger-constructor.module.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
-function BurgerConstructor(props) {
+function BurgerConstructor() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+
+  const burgerConstructor = useSelector((state) => state.burgerConstructor);
+
+  console.log(burgerConstructor);
 
   const closeOrderModal = () => {
     setIsOrderModalOpen(false);
@@ -19,10 +24,11 @@ function BurgerConstructor(props) {
     setIsOrderModalOpen(true);
   };
 
-  const { data } = props;
+  // const { ingredients } = props;
   return (
     <section className={`mt-25 ${Style.burger_constructor}`}>
-      <ConstructorElements data={data} />
+      {/* <ConstructorElements ingredients={ingredients} /> */}
+      <ConstructorElements />
       <ConstructorTotal openOrderModal={openOrderModal} />
       {isOrderModalOpen && (
         <Modal closeModal={closeOrderModal}>
@@ -33,8 +39,8 @@ function BurgerConstructor(props) {
   );
 }
 
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired,
-};
+// BurgerConstructor.propTypes = {
+//   ingredients: PropTypes.arrayOf(ingredientPropType).isRequired,
+// };
 
 export default BurgerConstructor;
