@@ -38,9 +38,9 @@ const orderDetailsReducer = (state = initialState, action) => {
 
     case ORDER_DETAILS_FAILED: {
       return {
-        ...state,
         isLoading: false,
         hasError: true,
+        order: null,
       };
     }
     default: {

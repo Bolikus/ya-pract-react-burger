@@ -27,9 +27,9 @@ const burgerIngredientsReducer = (state = initialState, action) => {
     }
     case BURGER_INGREDIENTS_FAILED: {
       return {
-        ...state,
         isLoading: false,
         hasError: true,
+        ingredients: [],
       };
     }
     default: {
