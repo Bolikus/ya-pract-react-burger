@@ -46,10 +46,13 @@ function BurgerIngrediens(props) {
     if (inViewBun && inViewSauce) {
       setCurrent(BUN);
     }
-    if (inViewSauce & !inViewBun) {
+    if (inViewSauce && !inViewBun) {
       setCurrent(SAUCE);
     }
-    if (inViewMain) {
+    if (inViewSauce && inViewMain) {
+      setCurrent(SAUCE);
+    }
+    if (inViewMain && !inViewSauce) {
       setCurrent(MAIN);
     }
   }, [inViewBun, inViewSauce, inViewMain]);
