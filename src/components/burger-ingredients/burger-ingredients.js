@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import React from "react";
+import { useMemo, useState } from "react";
 import Tabs from "./tabs/tabs.js";
 import IngredientsGroup from "./ingredients-group/ingredients-group.js";
 import Modal from "../modal/modal.js";
@@ -6,77 +7,45 @@ import IngredientDetails from "./ingredient-details/ingredient-details.js";
 import bgStyle from "./burger-ingredients.module.css";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types.js";
-import { useSelector } from "react-redux";
-import { useInView } from "react-intersection-observer";
-
-export const BUN = "bun";
-export const SAUCE = "sauce";
-export const MAIN = "main";
 
 function BurgerIngrediens(props) {
-  const { ingredients, isLoading, hasError } = props;
-  const ingredienInModal = useSelector((state) => state.burgerIngredientDetails);
-  const [current, setCurrent] = useState(BUN);
+  const { data } = props;
+  // const [modal, setModal] = useState(false);
+  const [ingredienInModal, setIngredientInModal] = useState();
+  const buns = useMemo(() => data.filter((item) => item.type === "bun"), [data]);
+  const sauce = useMemo(() => data.filter((item) => item.type === "sauce"), [data]);
+  const main = useMemo(() => data.filter((item) => item.type === "main"), [data]);
 
-  const buns = useMemo(() => ingredients.filter((item) => item.type === BUN), [ingredients]);
-  const sauce = useMemo(() => ingredients.filter((item) => item.type === SAUCE), [ingredients]);
-  const main = useMemo(() => ingredients.filter((item) => item.type === MAIN), [ingredients]);
+  // const openModal = () => {
+  //   setIngredientInModal(true);
+  // };
 
-  const burgerIngredientDetails = useSelector((state) => state.burgerIngredientDetails);
+  // const closeModal = () => {
+  //   setIngredientInModal(false);
+  // };
 
-  const ingredientsSection = useRef();
+  const closeIngredientModal = () => {
+    setIngredientInModal();
+  };
 
-  const [refBun, inViewBun] = useInView({
-    threshold: 0,
-    root: ingredientsSection.current,
-  });
-
-  const [refSauce, inViewSauce] = useInView({
-    threshold: 0.25,
-    rootMargin: "-150px",
-    root: ingredientsSection.current,
-  });
-
-  const [refMain, inViewMain] = useInView({
-    threshold: 0.5,
-    root: ingredientsSection.current,
-  });
-
-  useEffect(() => {
-    if (inViewBun && inViewSauce) {
-      setCurrent(BUN);
-    }
-    if (inViewSauce & !inViewBun) {
-      setCurrent(SAUCE);
-    }
-    if (inViewMain) {
-      setCurrent(MAIN);
-    }
-  }, [inViewBun, inViewSauce, inViewMain]);
+  const getIngredientInfo = (id) => {
+    return setIngredientInModal(data.find((item) => item._id === id));
+  };
 
   return (
     <>
-      {!isLoading && !hasError && ingredients.length > 0 && (
-        <section className={`mt-10 ${bgStyle.burger_ingredients}`}>
-          <div className={`text text_type_main-large ${bgStyle.al_left}`}>Соберите бургер</div>
-          <Tabs current={current} setCurrent={setCurrent} />
-          <div ref={ingredientsSection} className={`mt-10 custom-scroll ${bgStyle.burger_ingredients_groups}`}>
-            <div ref={refBun}>
-              <IngredientsGroup typeName="Булки" ingredients={buns} idName={BUN} />
-            </div>
-            <div ref={refSauce}>
-              <IngredientsGroup typeName="Соусы" ingredients={sauce} idName={SAUCE} />
-            </div>
-            <div ref={refMain}>
-              <IngredientsGroup typeName="Начинки" ingredients={main} idName={MAIN} />
-            </div>
-          </div>
-        </section>
-      )}
-
-      {ingredienInModal.ingredient && (
-        <Modal title="Детали ингредиента">
-          <IngredientDetails ingredienInModal={ingredienInModal.ingredient} />
+      <section className={`mt-10 ${bgStyle.burger_ingredients}`}>
+        <div className={`text text_type_main-large ${bgStyle.al_left}`}>Соберите бургер</div>
+        <Tabs />
+        <div className={`mt-10 custom-scroll ${bgStyle.burger_ingredients_groups}`}>
+          <IngredientsGroup typeName="Булки" ingredients={buns} idName="buns" onIngredientClick={getIngredientInfo} />
+          <IngredientsGroup typeName="Соусы" ingredients={sauce} idName="sauce" onIngredientClick={getIngredientInfo} />
+          <IngredientsGroup typeName="Начинки" ingredients={main} idName="main" onIngredientClick={getIngredientInfo} />
+        </div>
+      </section>
+      {ingredienInModal && (
+        <Modal title="Детали ингредиента" closeModal={closeIngredientModal}>
+          <IngredientDetails ingredienInModal={ingredienInModal} />
         </Modal>
       )}
     </>
@@ -84,9 +53,7 @@ function BurgerIngrediens(props) {
 }
 
 BurgerIngrediens.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientPropType).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  hasError: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType).isRequired,
 };
 
 export default BurgerIngrediens;

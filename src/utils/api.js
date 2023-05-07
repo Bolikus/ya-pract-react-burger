@@ -1,11 +1,14 @@
-export const NORMA_API = "https://norma.nomoreparties.space/api";
+const API_URL = "https://norma.nomoreparties.space/api";
 
-export const checkResponse = (response) => {
+const checkResponse = (response) => {
   return response.ok ? response.json() : response.json().then((err) => Promise.reject(err));
 };
 
 export const getIngredients = () => {
-  return fetch(`${NORMA_API}/ingredients`)
+  return fetch(`${API_URL}/ingredients`)
     .then(checkResponse)
-    .catch((error) => {});
+    .then((data) => {
+      if (data?.success) return data.data;
+      return Promise.reject(data);
+    });
 };
