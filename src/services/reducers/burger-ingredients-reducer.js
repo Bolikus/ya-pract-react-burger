@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const burgerIngredientsReducer = (state = initialState, action) => {
-  console.log("burgerIngredientsReducer start");
   switch (action.type) {
     case BURGER_INGREDIENTS_REQUEST: {
       return {

@@ -25,7 +25,6 @@ export const burgerConstructorAddBun = (ingredient) => {
 };
 
 export const burgerConstructorAddIngredient = (ingredient, uuid) => {
-  //console.log(ingredient, uuid);
   return (dispatch) => {
     dispatch({
       type: BURGER_CONSTRUCTOR_REQUEST,

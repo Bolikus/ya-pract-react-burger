@@ -1,46 +1,57 @@
-// import ConstructorItems from "./constructor-items/constructor-items";
+import { useMemo } from "react";
 import ConstructorElements from "./constructor-elements/constructor-elements";
 import ConstructorTotal from "./constructor-total/constructor-total";
-import PropTypes from "prop-types";
-import { ingredientPropType } from "../../utils/prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
 import Style from "./burger-constructor.module.css";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function BurgerConstructor() {
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
-
   const burgerConstructor = useSelector((state) => state.burgerConstructor);
+  const orderDetails = useSelector((state) => state.orderDetails);
 
-  console.log(burgerConstructor);
+  const orderPrice = useMemo(() => {
+    let price = 0;
 
-  const closeOrderModal = () => {
-    setIsOrderModalOpen(false);
-  };
+    if (burgerConstructor.bun) {
+      price += burgerConstructor.bun.price * 2;
+    }
+    if (burgerConstructor.ingredients.length !== 0) {
+      price += burgerConstructor.ingredients.reduce((sum, item) => sum + item.price, 0);
+    }
+    return price;
+  }, [burgerConstructor]);
 
-  const openOrderModal = () => {
-    setIsOrderModalOpen(true);
-  };
+  const orderIngredients = useMemo(() => {
+    let orderIngredientsArray = [];
 
-  // const { ingredients } = props;
+    if (burgerConstructor.bun) {
+      orderIngredientsArray.push(burgerConstructor.bun._id);
+    }
+
+    if (burgerConstructor.ingredients.length !== 0) {
+      burgerConstructor.ingredients.forEach((item) => {
+        orderIngredientsArray.push(item._id);
+      });
+    }
+    if (burgerConstructor.bun) {
+      orderIngredientsArray.push(burgerConstructor.bun._id);
+    }
+    return orderIngredientsArray;
+  }, [burgerConstructor]);
+
   return (
     <section className={`mt-25 ${Style.burger_constructor}`}>
-      {/* <ConstructorElements ingredients={ingredients} /> */}
       <ConstructorElements />
-      <ConstructorTotal openOrderModal={openOrderModal} />
-      {isOrderModalOpen && (
-        <Modal closeModal={closeOrderModal}>
-          <OrderDetails orderId={202304} />
+      <ConstructorTotal orderPrice={orderPrice} orderIngredients={orderIngredients} />
+
+      {orderDetails.order !== null && orderDetails.order.success && (
+        <Modal>
+          <OrderDetails orderId={orderDetails.order.order.number} orderName={orderDetails.order.name} />
         </Modal>
       )}
     </section>
   );
 }
-
-// BurgerConstructor.propTypes = {
-//   ingredients: PropTypes.arrayOf(ingredientPropType).isRequired,
-// };
 
 export default BurgerConstructor;

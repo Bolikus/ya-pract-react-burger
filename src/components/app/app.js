@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AppHeader from "../header/app-header/app-header";
 import BurgerIngrediens from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { useDispatch, useSelector } from "react-redux";
-
 import mainStyle from "./app.module.css";
-// import { getIngredients } from "../../utils/api";
 import { getBurgerIngredients } from "../../services/actions/burger-ingredients-actions";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
   const dispatch = useDispatch();
   const { ingredients, hasError, isLoading } = useSelector((state) => state.burgerIngredients);
 
-  const printState = useSelector((state) => state);
-  // console.log(printState);
-  // const [ingredients, setData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [hasError, setHasError] = useState(false);
-
-  // useEffect(() => {
-  //   getIngredients()
-  //     .then(setData)
-  //     .catch(() => setHasError(true))
-  //     .finally(() => setIsLoading(false));
-  // }, []);
-
   useEffect(() => {
     dispatch(getBurgerIngredients());
   }, [dispatch]);
-
-  console.log(printState);
 
   return (
     <div className={mainStyle.App}>
@@ -38,8 +23,10 @@ function App() {
       {hasError && `Произошла ошибка при загрузке.`}
       {!isLoading && !hasError && (
         <main className={mainStyle.main_container}>
-          <BurgerIngrediens ingredients={ingredients} />
-          <BurgerConstructor />
+          <DndProvider backend={HTML5Backend}>
+            <BurgerIngrediens ingredients={ingredients} isLoading={isLoading} hasError={hasError} />
+            <BurgerConstructor />
+          </DndProvider>
         </main>
       )}
     </div>
