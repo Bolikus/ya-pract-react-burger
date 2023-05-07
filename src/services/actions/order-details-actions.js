@@ -36,9 +36,7 @@ export const burgerConstructorСheckout = (order) => {
 };
 
 export const burgerConstructorClear = () => {
-  return (dispatch) => {
-    dispatch({
-      type: ORDER_DETAILS_CLEAR,
-    });
+  return {
+    type: ORDER_DETAILS_CLEAR,
   };
 };

@@ -13,51 +13,50 @@ export const BURGER_CONSTRUCTOR_CHANGE_INGREDIENT = "BURGER_CONSTRUCTOR_CHANGE_I
 export const BURGER_CHECKOUT_REQUEST = "BURGER_CHECKOUT_REQUEST";
 
 export const burgerConstructorAddBun = (ingredient) => {
-  return (dispatch) => {
-    dispatch({
+  return (
+    {
       type: BURGER_CONSTRUCTOR_REQUEST,
-    });
-    dispatch({
+    },
+    {
       type: BURGER_CONSTRUCTOR_ADD_BUN,
       payload: ingredient,
-    });
-  };
+    }
+  );
 };
 
 export const burgerConstructorAddIngredient = (ingredient, uuid) => {
-  return (dispatch) => {
-    dispatch({
+  return (
+    {
       type: BURGER_CONSTRUCTOR_REQUEST,
-    });
-    dispatch({
+    },
+    {
       type: BURGER_CONSTRUCTOR_ADD_INGREDIENT,
       payload: { ...ingredient },
       uuid: uuid,
-    });
-  };
+    }
+  );
 };
 
 export const burgerConstructorRemoveIngredient = (index) => {
-  return (dispatch) => {
-    dispatch({
+  return (
+    {
       type: BURGER_CONSTRUCTOR_REQUEST,
-    });
-    dispatch({
+    },
+    {
       type: BURGER_CONSTRUCTOR_REMOVE_INGREDIENT,
       payload: index,
-    });
-  };
+    }
+  );
 };
 
 export const burgerConstructorChangeIngredient = (dragIndex, hoverIndex) => {
-  return (dispatch) => {
-    dispatch({
+  return (
+    {
       type: BURGER_CONSTRUCTOR_REQUEST,
-    });
-
-    dispatch({
+    },
+    {
       type: BURGER_CONSTRUCTOR_CHANGE_INGREDIENT,
       payload: { dragIndex, hoverIndex },
-    });
-  };
+    }
+  );
 };
