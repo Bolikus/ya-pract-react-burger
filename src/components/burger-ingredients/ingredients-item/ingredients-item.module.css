@@ -1,16 +1,31 @@
-.ingredients_item {
+.ingredientsItem {
   position: relative;
   width: calc((100% / 2) - 12px);
+  transition: ease-out 1s;
 }
-
-.ingredients_item_image {
-  position: relative;
-  width: calc((100% / 2) - 12px);
+.ingredientsItem__drag {
+  transform: scale(0.5);
+  opacity: 0.5;
+}
+.ingredientsItem__image {
   text-align: center;
 }
-
-.price {
+.ingredientsItem__price {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 8px;
+}
+.ingredientsItem__price svg {
+  width: 24px;
+  height: auto;
+  box-sizing: border-box;
+  display: block;
+}
+.ingredientsItem__name {
+  text-align: center;
+}
+.ingredientsItem:hover {
+  cursor: pointer;
 }
