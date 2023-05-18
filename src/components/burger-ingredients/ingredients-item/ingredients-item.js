@@ -1,4 +1,6 @@
 import { useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 import Styles from "./ingredients-item.module.css";
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +11,8 @@ import { ingredientPropType } from "../../../utils/prop-types";
 
 function IngredientItem(props) {
   const { ingredient } = props;
+
+  const location = useLocation();
 
   const dispatch = useDispatch();
 
@@ -44,7 +48,13 @@ function IngredientItem(props) {
   });
 
   return (
-    <div className={Styles.ingredientsItem} onClick={() => handleOpenModal(ingredient)} ref={dragRef}>
+    <Link
+      to={`/ingredients/${ingredient._id}`}
+      className={`${Styles.ingredientsItem} ${isDrag ? Styles.ingredientsItem__drag : ""}`}
+      onClick={() => handleOpenModal(ingredient)}
+      ref={dragRef}
+      state={{ backgroundLocation: location }}
+    >
       <div className={`ml-4 mr-4 ${Styles.ingredientsItem__image}`}>
         <img src={ingredient.image} alt={ingredient.name} />
       </div>
@@ -59,7 +69,7 @@ function IngredientItem(props) {
           <Counter count={count} size="default" extraClass="m-1" />
         </div>
       )}
-    </div>
+    </Link>
   );
 }
 

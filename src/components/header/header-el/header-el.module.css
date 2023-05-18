@@ -33,3 +33,39 @@
 .light {
   color: #f2f2f3;
 }
+
+.aButtonDisable {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #8585ad;
+  padding: 20px;
+}
+.aButtonDisable svg {
+  width: 24px;
+  height: auto;
+  box-sizing: border-box;
+  display: block;
+  fill: #8585ad;
+}
+
+.aButtonEnable {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 20px;
+}
+.aButtonEnable svg {
+  width: 24px;
+  height: auto;
+  box-sizing: border-box;
+  display: block;
+  fill: #ffffff;
+}

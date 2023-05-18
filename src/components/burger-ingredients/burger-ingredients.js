@@ -1,28 +1,22 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import Tabs from "./tabs/tabs.js";
 import IngredientsGroup from "./ingredients-group/ingredients-group.js";
-import Modal from "../modal/modal.js";
-import IngredientDetails from "./ingredient-details/ingredient-details.js";
 import bgStyle from "./burger-ingredients.module.css";
 import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types.js";
-import { useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
 
 export const BUN = "bun";
 export const SAUCE = "sauce";
 export const MAIN = "main";
 
-function BurgerIngrediens(props) {
+function BurgerIngredients(props) {
   const { ingredients, isLoading, hasError } = props;
-  const ingredienInModal = useSelector((state) => state.burgerIngredientDetails);
   const [current, setCurrent] = useState(BUN);
 
   const buns = useMemo(() => ingredients.filter((item) => item.type === BUN), [ingredients]);
   const sauce = useMemo(() => ingredients.filter((item) => item.type === SAUCE), [ingredients]);
   const main = useMemo(() => ingredients.filter((item) => item.type === MAIN), [ingredients]);
-
-  const burgerIngredientDetails = useSelector((state) => state.burgerIngredientDetails);
 
   const ingredientsSection = useRef();
 
@@ -76,20 +70,14 @@ function BurgerIngrediens(props) {
           </div>
         </section>
       )}
-
-      {ingredienInModal.ingredient && (
-        <Modal title="Детали ингредиента">
-          <IngredientDetails ingredienInModal={ingredienInModal.ingredient} />
-        </Modal>
-      )}
     </>
   );
 }
 
-BurgerIngrediens.propTypes = {
+BurgerIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(ingredientPropType).isRequired,
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
 };
 
-export default BurgerIngrediens;
+export default BurgerIngredients;

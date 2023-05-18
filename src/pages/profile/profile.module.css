@@ -1,0 +1,67 @@
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 60px;
+  max-width: 1240px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  margin-top: 120px;
+}
+.profile nav {
+  width: calc((100% - 480px - 60px) / 2);
+}
+.profile nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.profile nav ul li a {
+  text-decoration: none;
+  padding: 16px 0;
+  display: block;
+  transition: ease-in 0.3s;
+}
+.profile nav ul li a:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+.profile nav ul li button {
+  text-decoration: none;
+  padding: 16px 0;
+  display: block;
+  transition: ease-in 0.3s;
+  background-color: unset;
+  color: #8585ad;
+  border: unset;
+}
+.profile nav ul li button:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+.profile__note {
+  color: #8585ad;
+  opacity: 0.4;
+}
+.profile main {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.profile__form {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
