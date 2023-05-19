@@ -9,6 +9,7 @@ import { burgerConstructorClear } from "../../services/actions/order-details-act
 import { useNavigate } from "react-router-dom";
 
 const modalRoot = document.getElementById("modal");
+const ESC_KEYCODE = 27;
 
 const Modal = (props) => {
   const { title, children } = props;
@@ -27,7 +28,7 @@ const Modal = (props) => {
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.keyCode === 27) {
+      if (e.keyCode === ESC_KEYCODE) {
         if (orderDetails.order !== null) {
           dispatch(burgerConstructorClear());
         }

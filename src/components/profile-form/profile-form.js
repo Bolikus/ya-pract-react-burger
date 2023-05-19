@@ -15,13 +15,13 @@ const ProfileForm = () => {
   const { values, setValues, handleChange } = useForm({
     name: user.name,
     email: user.email,
-    password: "*****",
+    password: "",
   });
 
   const defaultValues = {
     name: user.name,
     email: user.email,
-    password: "*****",
+    password: "",
   };
 
   const handleReset = (e) => {
