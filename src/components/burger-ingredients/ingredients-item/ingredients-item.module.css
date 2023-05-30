@@ -2,6 +2,8 @@
   position: relative;
   width: calc((100% / 2) - 12px);
   transition: ease-out 1s;
+  text-decoration: none;
+  color: #ffffff;
 }
 .ingredientsItem__drag {
   transform: scale(0.5);

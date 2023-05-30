@@ -1,0 +1,25 @@
+.register {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.register a {
+  color: #4c4cff;
+  text-decoration: underline;
+  transition: ease-in 0.3s;
+}
+.register a:hover {
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+}
+.register form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

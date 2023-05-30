@@ -2,9 +2,12 @@ import ModalOverlayStyles from "./modal-overlay.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { removeBurgerIngredientDetails } from "../../services/actions/burger-ingredient-details-actions";
 import { burgerConstructorClear } from "../../services/actions/order-details-actions";
+import { useNavigate } from "react-router-dom";
 
 const ModalOverlay = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const burgerIngredientDetails = useSelector((state) => state.burgerIngredientDetails);
   const orderDetails = useSelector((state) => state.orderDetails);
 
@@ -16,6 +19,7 @@ const ModalOverlay = () => {
       if (orderDetails.order !== null) {
         dispatch(burgerConstructorClear());
       }
+      navigate("/", { replace: true });
     }
   };
 

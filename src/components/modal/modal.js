@@ -5,37 +5,34 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeBurgerIngredientDetails } from "../../services/actions/burger-ingredient-details-actions";
 import { burgerConstructorClear } from "../../services/actions/order-details-actions";
+import { useNavigate } from "react-router-dom";
 
 const modalRoot = document.getElementById("modal");
+const ESC_KEYCODE = 27;
 
 const Modal = (props) => {
   const { title, children } = props;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const burgerIngredientDetails = useSelector((state) => state.burgerIngredientDetails);
   const orderDetails = useSelector((state) => state.orderDetails);
 
   const handleCloseModal = () => {
-    if (burgerIngredientDetails.ingredient !== null) {
-      dispatch(removeBurgerIngredientDetails());
-    }
     if (orderDetails.order !== null) {
       dispatch(burgerConstructorClear());
     }
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.keyCode === "Escape") {
-        if (burgerIngredientDetails.ingredient !== null) {
-          dispatch(removeBurgerIngredientDetails());
-        }
+      if (e.keyCode === ESC_KEYCODE) {
         if (orderDetails.order !== null) {
           dispatch(burgerConstructorClear());
         }
+        navigate("/", { replace: true });
       }
     };
     document.addEventListener("keydown", handleEscape);
@@ -43,7 +40,7 @@ const Modal = (props) => {
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [dispatch, burgerIngredientDetails.ingredient, orderDetails.order]);
+  }, [dispatch, orderDetails.order, navigate]);
 
   return ReactDOM.createPortal(
     <>
