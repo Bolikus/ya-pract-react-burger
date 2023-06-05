@@ -61,7 +61,8 @@ function App(): JSX.Element {
               <Route
                 path="/ingredients/:id"
                 element={
-                  <Modal title="Детали ингредиента" onOverlayClicklAction={removeBurgerIngredientDetails}>
+                  <Modal title="Детали ингредиента" onCloseAction={removeBurgerIngredientDetails} navigateTo={"/"}>
+                    removeBurgerIngredientDetails
                     <IngredientDetails ingredients={ingredients} isLoading={isLoading} />
                   </Modal>
                 }

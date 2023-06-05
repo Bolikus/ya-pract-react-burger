@@ -9,27 +9,21 @@ import { useAppDispatch, useAppSelector } from "../../hook/hooks";
 interface IModalProps {
   title?: string;
   children?: ReactNode;
-  onCloseAction?: () => void;
-  onOverlayClicklAction: () => void;
+  onCloseAction: () => void;
+  navigateTo: string;
 }
 
 const modalRoot = document.getElementById("modal") as HTMLDivElement;
 const ESC_KEYCODE = 27;
 
 const Modal = (props: IModalProps) => {
-  const { title, children, onCloseAction, onOverlayClicklAction } = props;
+  const { title, children, onCloseAction, navigateTo } = props;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const orderDetails = useAppSelector((state) => state.orderDetails);
-
   const navigateToRoot = () => {
-    navigate("/", { replace: true });
-  };
-
-  const overlayClickAction = () => {
-    if (onOverlayClicklAction) onOverlayClicklAction();
+    navigate(navigateTo, { replace: true });
   };
 
   const handleCloseModal = () => {
@@ -53,7 +47,7 @@ const Modal = (props: IModalProps) => {
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [dispatch, orderDetails.order, navigate]);
+  }, [dispatch, navigate]);
 
   return ReactDOM.createPortal(
     <>
@@ -70,7 +64,7 @@ const Modal = (props: IModalProps) => {
           </div>
         </div>
       </div>
-      <ModalOverlay navigateToRoot={navigateToRoot} onOverlayClicklAction={onOverlayClicklAction} />
+      <ModalOverlay onCloseAction={onCloseAction} navigateTo={navigateTo} />
     </>,
     modalRoot
   );

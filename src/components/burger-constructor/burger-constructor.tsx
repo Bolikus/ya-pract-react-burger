@@ -60,7 +60,7 @@ function BurgerConstructor(props: IBurgerConstructorProps) {
       <ConstructorTotal orderPrice={orderPrice} orderIngredients={orderIngredients} />
 
       {orderDetails.order !== null && orderDetails.order.success && (
-        <Modal onCloseAction={burgerConstructorClear} onOverlayClicklAction={burgerConstructorClear}>
+        <Modal onCloseAction={burgerConstructorClear} navigateTo={"/"}>
           <OrderDetails orderId={orderDetails.order.order.number} orderName={orderDetails.order.name} />
         </Modal>
       )}
