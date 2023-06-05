@@ -2,42 +2,50 @@ import ReactDOM from "react-dom";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import ModalStyles from "./modal.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { useEffect, ReactNode } from "react";
-import { burgerConstructorClear } from "../../services/actions/order-details-actions";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hook/hooks";
 
 interface IModalProps {
   title?: string;
   children?: ReactNode;
+  onCloseAction?: () => void;
+  onOverlayClicklAction: () => void;
 }
 
 const modalRoot = document.getElementById("modal") as HTMLDivElement;
 const ESC_KEYCODE = 27;
 
 const Modal = (props: IModalProps) => {
-  const { title, children } = props;
+  const { title, children, onCloseAction, onOverlayClicklAction } = props;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const orderDetails = useAppSelector((state) => state.orderDetails);
 
-  const handleCloseModal = () => {
-    if (orderDetails.order !== null) {
-      dispatch(burgerConstructorClear());
-    }
+  const navigateToRoot = () => {
     navigate("/", { replace: true });
+  };
+
+  const overlayClickAction = () => {
+    if (onOverlayClicklAction) onOverlayClicklAction();
+  };
+
+  const handleCloseModal = () => {
+    if (onCloseAction) {
+      dispatch(onCloseAction());
+    }
+    navigateToRoot();
   };
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.keyCode === ESC_KEYCODE) {
-        if (orderDetails.order !== null) {
-          dispatch(burgerConstructorClear());
+        if (onCloseAction) {
+          dispatch(onCloseAction());
         }
-        navigate("/", { replace: true });
+        navigateToRoot();
       }
     };
     document.addEventListener("keydown", handleEscape);
@@ -62,15 +70,10 @@ const Modal = (props: IModalProps) => {
           </div>
         </div>
       </div>
-      <ModalOverlay />
+      <ModalOverlay navigateToRoot={navigateToRoot} onOverlayClicklAction={onOverlayClicklAction} />
     </>,
     modalRoot
   );
-};
-
-Modal.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.object.isRequired,
 };
 
 export default Modal;

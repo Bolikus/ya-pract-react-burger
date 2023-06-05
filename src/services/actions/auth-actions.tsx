@@ -51,7 +51,7 @@ export const sendRegisterForm = (name: string, email: string, password: string) 
   };
 };
 
-export const sendLoginForm = (values: any, onSuccess: any) => {
+export const sendLoginForm = (values: { email: string; password: string }, onSuccess: any) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: AUTH_LOGIN_REQUEST,
@@ -142,7 +142,7 @@ export const logoutUser = () => {
   };
 };
 
-export const changeUser = (form: any) => {
+export const changeUser = (form: { name: string; email: string; password: string }) => {
   return async (dispatch: AppDispatch) => {
     dispatch({
       type: CHANGE_USER_REQUEST,

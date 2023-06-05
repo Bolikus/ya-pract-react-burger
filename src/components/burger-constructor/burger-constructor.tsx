@@ -6,6 +6,7 @@ import OrderDetails from "./order-details/order-details";
 import Style from "./burger-constructor.module.css";
 import { IIngredient } from "../../utils/types";
 import { useAppSelector } from "../../hook/hooks";
+import { burgerConstructorClear } from "../../services/actions/order-details-actions";
 
 interface IBurgerConstructorProps {
   isLoading: boolean;
@@ -59,7 +60,7 @@ function BurgerConstructor(props: IBurgerConstructorProps) {
       <ConstructorTotal orderPrice={orderPrice} orderIngredients={orderIngredients} />
 
       {orderDetails.order !== null && orderDetails.order.success && (
-        <Modal>
+        <Modal onCloseAction={burgerConstructorClear} onOverlayClicklAction={burgerConstructorClear}>
           <OrderDetails orderId={orderDetails.order.order.number} orderName={orderDetails.order.name} />
         </Modal>
       )}

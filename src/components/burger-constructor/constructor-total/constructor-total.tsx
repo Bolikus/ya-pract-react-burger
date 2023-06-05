@@ -1,7 +1,6 @@
 import Style from "./constructor-total.module.css";
 import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { burgerConstructorСheckout } from "../../../services/actions/order-details-actions";
-import { ingredientPropType } from "../../../utils/prop-types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hook/hooks";
 

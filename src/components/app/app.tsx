@@ -19,7 +19,7 @@ import Modal from "../modal/modal";
 import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 import { checkUserAuth } from "../../services/actions/auth-actions";
 import { useAppDispatch, useAppSelector } from "../../hook/hooks";
-import { IIngredient } from "../../utils/types";
+import { removeBurgerIngredientDetails } from "../../services/actions/burger-ingredient-details-actions";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -61,7 +61,7 @@ function App(): JSX.Element {
               <Route
                 path="/ingredients/:id"
                 element={
-                  <Modal title="Детали ингредиента">
+                  <Modal title="Детали ингредиента" onOverlayClicklAction={removeBurgerIngredientDetails}>
                     <IngredientDetails ingredients={ingredients} isLoading={isLoading} />
                   </Modal>
                 }

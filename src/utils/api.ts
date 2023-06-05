@@ -9,14 +9,23 @@ export const AUTH_USER = `${NORMA_API}/auth/user`;
 export const PASSWORD_RESET = `${NORMA_API}/password-reset`;
 export const PASSWORD_RESET_RESET = `${NORMA_API}/password-reset/reset`;
 
+interface IAuthLogin {
+  email: string;
+  password: string;
+}
+
+interface ISetUser {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export const checkResponse = (response: Response) => {
   return response.ok ? response.json() : response.json().then((err) => Promise.reject(err));
 };
 
 export const getIngredients = () => {
-  return fetch(`${NORMA_API}/ingredients`)
-    .then(checkResponse)
-    .catch((error) => {});
+  return fetch(`${NORMA_API}/ingredients`).then(checkResponse);
 };
 
 export const refreshToken = () => {
@@ -52,7 +61,7 @@ export const fetchWithRefresh = async (url: string, options: any) => {
   }
 };
 
-export const setUser = (form: any) => {
+export const setUser = (form: ISetUser) => {
   return fetchWithRefresh(AUTH_USER, {
     method: "PATCH",
     headers: {
@@ -85,14 +94,10 @@ export const authRegister = (name: string, email: string, password: string) => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify({ name: name, email: email, password: password }),
-  })
-    .then(checkResponse)
-    .catch((error) => {
-      console.log(error);
-    });
+  }).then(checkResponse);
 };
 
-export const authLogin = (values: any) => {
+export const authLogin = (values: IAuthLogin) => {
   return fetch(AUTH_LOGIN, {
     method: "POST",
     mode: "cors",
@@ -104,14 +109,10 @@ export const authLogin = (values: any) => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify(values),
-  })
-    .then(checkResponse)
-    .catch((error) => {
-      console.log(error);
-    });
+  }).then(checkResponse);
 };
 
-export const passwordReset = (values: any) => {
+export const passwordReset = (values: { email: string }) => {
   return fetch(PASSWORD_RESET, {
     method: "POST",
     mode: "cors",
@@ -126,7 +127,7 @@ export const passwordReset = (values: any) => {
   }).then(checkResponse);
 };
 
-export const passwordChange = (values: any) => {
+export const passwordChange = (values: { password: string; token: string }) => {
   return fetch(PASSWORD_RESET_RESET, {
     method: "POST",
     mode: "cors",
@@ -138,11 +139,7 @@ export const passwordChange = (values: any) => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify(values),
-  })
-    .then(checkResponse)
-    .catch((error) => {
-      console.log(error);
-    });
+  }).then(checkResponse);
 };
 
 export const authLogout = () => {
@@ -157,9 +154,5 @@ export const authLogout = () => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
     body: JSON.stringify({ token: localStorage.getItem("refreshToken") }),
-  })
-    .then(checkResponse)
-    .catch((error) => {
-      console.log(error);
-    });
+  }).then(checkResponse);
 };
