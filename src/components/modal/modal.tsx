@@ -35,12 +35,7 @@ const Modal = (props: IModalProps) => {
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.keyCode === ESC_KEYCODE) {
-        if (onCloseAction) {
-          dispatch(onCloseAction());
-        }
-        navigateToRoot();
-      }
+      if (e.keyCode === ESC_KEYCODE) handleCloseModal();
     };
     document.addEventListener("keydown", handleEscape);
 
@@ -64,7 +59,7 @@ const Modal = (props: IModalProps) => {
           </div>
         </div>
       </div>
-      <ModalOverlay onCloseAction={onCloseAction} navigateTo={navigateTo} />
+      <ModalOverlay onOverlayClickl={handleCloseModal} />
     </>,
     modalRoot
   );

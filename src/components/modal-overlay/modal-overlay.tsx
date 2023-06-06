@@ -1,24 +1,15 @@
 import React, { SyntheticEvent } from "react";
 import ModalOverlayStyles from "./modal-overlay.module.css";
-import { useAppDispatch, useAppSelector } from "../../hook/hooks";
-import { useNavigate } from "react-router-dom";
 
 interface IModalOverlay {
-  onCloseAction: () => void;
-  navigateTo: string;
+  onOverlayClickl: () => void;
 }
 
 const ModalOverlay = (props: IModalOverlay) => {
-  const { onCloseAction, navigateTo } = props;
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const { onOverlayClickl } = props;
 
   const handleClickOverlay = (e: SyntheticEvent) => {
-    if (e.target === e.currentTarget) {
-      dispatch(onCloseAction());
-      navigate(navigateTo, { replace: true });
-    }
+    if (e.target === e.currentTarget) onOverlayClickl();
   };
 
   return <div className={ModalOverlayStyles.modalOverlay} onClick={handleClickOverlay}></div>;

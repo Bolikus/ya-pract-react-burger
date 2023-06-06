@@ -62,7 +62,6 @@ function App(): JSX.Element {
                 path="/ingredients/:id"
                 element={
                   <Modal title="Детали ингредиента" onCloseAction={removeBurgerIngredientDetails} navigateTo={"/"}>
-                    removeBurgerIngredientDetails
                     <IngredientDetails ingredients={ingredients} isLoading={isLoading} />
                   </Modal>
                 }
