@@ -5,8 +5,10 @@ import Modal from "../modal/modal";
 import OrderDetails from "./order-details/order-details";
 import Style from "./burger-constructor.module.css";
 import { IIngredient } from "../../utils/types";
-import { useAppSelector } from "../../hook/hooks";
+import { useAppDispatch, useAppSelector } from "../../hook/hooks";
 import { burgerConstructorClear } from "../../services/actions/order-details-actions";
+import { useNavigate } from "react-router-dom";
+import Preloader from "../preloader/preloader";
 
 interface IBurgerConstructorProps {
   isLoading: boolean;
@@ -16,39 +18,36 @@ interface IBurgerConstructorProps {
 function BurgerConstructor(props: IBurgerConstructorProps) {
   const burgerConstructor = useAppSelector((state) => state.burgerConstructor);
   const orderDetails = useAppSelector((state) => state.orderDetails);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleCloseModal = () => {
+    dispatch(burgerConstructorClear());
+    navigate(-1);
+  };
 
   const orderPrice = useMemo<number>(() => {
     let price = 0;
-    //@ts-ignore
     if (burgerConstructor.bun) {
-      //@ts-ignore
       price += burgerConstructor.bun.price * 2;
     }
-    //@ts-ignore
     if (burgerConstructor.ingredients.length !== 0) {
-      //@ts-ignore
-      price += burgerConstructor.ingredients.reduce((sum: number, item: IIngredient) => sum + item.price, 0);
+      price += burgerConstructor.ingredients.reduce((sum, item) => sum + item.price, 0);
     }
     return price;
   }, [burgerConstructor]);
 
   const orderIngredients = useMemo<string[]>(() => {
     let orderIngredientsArray = [];
-    //@ts-ignore
     if (burgerConstructor.bun) {
-      //@ts-ignore
       orderIngredientsArray.push(burgerConstructor.bun._id);
     }
-    //@ts-ignore
     if (burgerConstructor.ingredients.length !== 0) {
-      //@ts-ignore
       burgerConstructor.ingredients.forEach((item: IIngredient) => {
         orderIngredientsArray.push(item._id);
       });
     }
-    //@ts-ignore
     if (burgerConstructor.bun) {
-      //@ts-ignore
       orderIngredientsArray.push(burgerConstructor.bun._id);
     }
     return orderIngredientsArray;
@@ -59,8 +58,10 @@ function BurgerConstructor(props: IBurgerConstructorProps) {
       <ConstructorElements />
       <ConstructorTotal orderPrice={orderPrice} orderIngredients={orderIngredients} />
 
+      {orderDetails.isLoading && <Preloader message="Оформляем заказ..." />}
+
       {orderDetails.order !== null && orderDetails.order.success && (
-        <Modal onCloseAction={burgerConstructorClear} navigateTo={"/"}>
+        <Modal onCloseAction={handleCloseModal}>
           <OrderDetails orderId={orderDetails.order.order.number} orderName={orderDetails.order.name} />
         </Modal>
       )}

@@ -2,14 +2,14 @@ import React, { SyntheticEvent } from "react";
 import ModalOverlayStyles from "./modal-overlay.module.css";
 
 interface IModalOverlay {
-  onOverlayClickl: () => void;
+  onOverlayClick: () => void;
 }
 
 const ModalOverlay = (props: IModalOverlay) => {
-  const { onOverlayClickl } = props;
+  const { onOverlayClick } = props;
 
   const handleClickOverlay = (e: SyntheticEvent) => {
-    if (e.target === e.currentTarget) onOverlayClickl();
+    if (e.target === e.currentTarget) onOverlayClick();
   };
 
   return <div className={ModalOverlayStyles.modalOverlay} onClick={handleClickOverlay}></div>;

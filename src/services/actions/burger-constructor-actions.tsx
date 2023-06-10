@@ -1,3 +1,4 @@
+import { AppDispatch } from "../../index";
 import { IIngredient } from "../../utils/types";
 
 export const BURGER_CONSTRUCTOR_REQUEST = "BURGER_CONSTRUCTOR_REQUEST";
@@ -14,31 +15,67 @@ export const BURGER_CONSTRUCTOR_CHANGE_INGREDIENT = "BURGER_CONSTRUCTOR_CHANGE_I
 
 export const BURGER_CHECKOUT_REQUEST = "BURGER_CHECKOUT_REQUEST";
 
+export type TBurgerConstructorActions =
+  | { type: typeof BURGER_CONSTRUCTOR_REQUEST }
+  | { type: typeof BURGER_CONSTRUCTOR_ADD_BUN; payload: IIngredient | null }
+  | {
+      type: typeof BURGER_CONSTRUCTOR_ADD_INGREDIENT;
+      payload: IIngredient;
+      uuid: string;
+    }
+  | { type: typeof BURGER_CONSTRUCTOR_REMOVE_INGREDIENT; payload: number }
+  | {
+      type: typeof BURGER_CONSTRUCTOR_CHANGE_INGREDIENT;
+      payload: { dragIndex: number; hoverIndex: number };
+    }
+  | { type: typeof BURGER_CONSTRUCTOR_FAILED };
+
 export const burgerConstructorAddBun = (ingredient: IIngredient) => {
-  return {
-    type: BURGER_CONSTRUCTOR_ADD_BUN,
-    payload: ingredient,
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: BURGER_CONSTRUCTOR_REQUEST,
+    });
+    dispatch({
+      type: BURGER_CONSTRUCTOR_ADD_BUN,
+      payload: ingredient,
+    });
   };
 };
 
 export const burgerConstructorAddIngredient = (ingredient: IIngredient, uuid: string) => {
-  return {
-    type: BURGER_CONSTRUCTOR_ADD_INGREDIENT,
-    payload: { ...ingredient },
-    uuid: uuid,
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: BURGER_CONSTRUCTOR_REQUEST,
+    });
+    dispatch({
+      type: BURGER_CONSTRUCTOR_ADD_INGREDIENT,
+      payload: { ...ingredient },
+      uuid: uuid,
+    });
   };
 };
 
 export const burgerConstructorRemoveIngredient = (index: number) => {
-  return {
-    type: BURGER_CONSTRUCTOR_REMOVE_INGREDIENT,
-    payload: index,
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: BURGER_CONSTRUCTOR_REQUEST,
+    });
+    dispatch({
+      type: BURGER_CONSTRUCTOR_REMOVE_INGREDIENT,
+      payload: index,
+    });
   };
 };
 
 export const burgerConstructorChangeIngredient = (dragIndex: number, hoverIndex: number) => {
-  return {
-    type: BURGER_CONSTRUCTOR_CHANGE_INGREDIENT,
-    payload: { dragIndex, hoverIndex },
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: BURGER_CONSTRUCTOR_REQUEST,
+    });
+
+    dispatch({
+      type: BURGER_CONSTRUCTOR_CHANGE_INGREDIENT,
+      payload: { dragIndex, hoverIndex },
+    });
   };
 };

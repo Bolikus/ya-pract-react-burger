@@ -1,21 +1,19 @@
 import React, { FormEvent } from "react";
 import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./login.module.css";
 import { sendLoginForm } from "../../services/actions/auth-actions";
-import { useDispatch } from "react-redux";
 import useForm from "../../hook/useForm";
 import { useAppDispatch } from "../../hook/hooks";
 
 const Login = () => {
   const { values, handleChange } = useForm({ email: "", password: "" });
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (values.email !== "" && values.email.length > 0 && values.password !== "" && values.password.length > 0) {
-      dispatch(sendLoginForm(values, { onSuccess: () => navigate("/") }));
+      dispatch(sendLoginForm(values));
     }
   };
 

@@ -27,7 +27,7 @@ const Profile = () => {
           </li>
           <li className="text text_type_main-medium">
             <NavLink
-              to="/profile/orders/:id"
+              to="/profile/orders"
               className={({ isActive }) => (isActive ? "text_color_primary" : "text_color_inactive")}
               end
             >

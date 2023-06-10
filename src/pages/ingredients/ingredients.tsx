@@ -16,7 +16,7 @@ const Ingredients = (props: IIngredientsProps) => {
     <div className={styles.ingredients}>
       <>
         {isLoading && ingredients.length > 0 ? (
-          <Preloader />
+          <Preloader message="Загружаем..." />
         ) : (
           <>
             <div className={`text text_type_main-large ${styles.ingredients__title}`}>Детали ингредиента</div>

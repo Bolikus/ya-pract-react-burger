@@ -26,9 +26,7 @@ const ForgotPassword = () => {
               setError("Произошла ошибка, проверьте правильность заполения email");
             }
           })
-          .catch((error) => {
-            console.log(error);
-          });
+          .catch((error) => {});
       }
     },
     [values, location.pathname, navigate]

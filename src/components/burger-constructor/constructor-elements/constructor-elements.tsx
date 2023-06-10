@@ -12,26 +12,19 @@ import { v4 as uuidv4 } from "uuid";
 import { IIngredient } from "../../../utils/types";
 import { useAppDispatch, useAppSelector } from "../../../hook/hooks";
 
-interface IIngredientAdd extends IIngredient {
-  uuid: string;
-}
-
 function ConstructorElements() {
   const dispatch = useAppDispatch();
   const burgerConstructor = useAppSelector((state) => state.burgerConstructor);
 
-  const [{ isHover }, dropRef] = useDrop({
+  const [{ isHover }, dropRef] = useDrop<IIngredient, void, { isHover: boolean | null }>({
     accept: "ingredient",
     collect: (monitor) => ({
       isHover: monitor.isOver(),
     }),
     drop(ingredient) {
-      //@ts-ignore
       ingredient.type === "bun"
-        ? //@ts-ignore
-          dispatch(burgerConstructorAddBun(ingredient))
-        : //@ts-ignore
-          dispatch(burgerConstructorAddIngredient(ingredient, uuidv4()));
+        ? dispatch(burgerConstructorAddBun(ingredient))
+        : dispatch(burgerConstructorAddIngredient(ingredient, uuidv4()));
     },
   });
 
@@ -45,16 +38,12 @@ function ConstructorElements() {
       className={`ml-4 mr-4 ${Styles.constructorElements} ${isHover ? Styles.constructorElements__hover : ""}`}
     >
       <div className={Styles.constructorElements__bun}>
-        {/*//@ts-ignore*/}
         {burgerConstructor.bun !== null ? (
           <ConstructorElement
             type="top"
             isLocked={true}
-            //@ts-ignore
             text={`${burgerConstructor.bun.name} (верх)`}
-            //@ts-ignore
             price={burgerConstructor.bun.price}
-            //@ts-ignore
             thumbnail={burgerConstructor.bun.image}
           />
         ) : (
@@ -65,10 +54,8 @@ function ConstructorElements() {
       </div>
 
       <div className={`custom-scroll ${Styles.constructorElements__items}`}>
-        {/*//@ts-ignore*/}
         {burgerConstructor.ingredients.length > 0 ? (
-          //@ts-ignore
-          burgerConstructor.ingredients.map((item: IIngredientAdd, index: number) => {
+          burgerConstructor.ingredients.map((item, index) => {
             return (
               <ConstructorItem
                 key={item.uuid}
@@ -90,16 +77,12 @@ function ConstructorElements() {
       </div>
 
       <div className={`${Styles.constructorElements__bun} ${Styles.constructorElements__bun_bottom}`}>
-        {/*//@ts-ignore*/}
         {burgerConstructor.bun !== null ? (
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            // @ts-ignore
             text={`${burgerConstructor.bun.name} (низ)`}
-            // @ts-ignore
             price={burgerConstructor.bun.price}
-            // @ts-ignore
             thumbnail={burgerConstructor.bun.image}
           />
         ) : (

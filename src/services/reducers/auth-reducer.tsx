@@ -16,16 +16,26 @@ import {
   GET_USER_FAILED,
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
+  TAuthActions,
 } from "../actions/auth-actions";
 
-const initialState = {
+import { IUser } from "../../utils/types";
+
+interface IInitialState {
+  user: IUser | null;
+  isLoading: boolean;
+  hasError: boolean;
+  isAuthChecked: boolean;
+}
+
+const initialState: IInitialState = {
   user: null,
   isLoading: false,
   hasError: false,
   isAuthChecked: false,
 };
 
-const authReducer = (state = initialState, action: any) => {
+const authReducer = (state = initialState, action: TAuthActions): IInitialState => {
   switch (action.type) {
     case AUTH_REGISTER_REQUEST: {
       return {

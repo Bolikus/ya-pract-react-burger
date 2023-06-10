@@ -14,7 +14,7 @@ const Protected = ({ onlyUnAuth = false, component }: IProtectedProps) => {
   const location = useLocation();
 
   if (!isAuthChecked) {
-    return <Preloader />;
+    return <Preloader message="Загружаем..." />;
   }
 
   if (onlyUnAuth && user) {

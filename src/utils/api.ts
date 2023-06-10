@@ -9,6 +9,8 @@ export const AUTH_USER = `${NORMA_API}/auth/user`;
 export const PASSWORD_RESET = `${NORMA_API}/password-reset`;
 export const PASSWORD_RESET_RESET = `${NORMA_API}/password-reset/reset`;
 
+export const wsUrl = "wss://norma.nomoreparties.space/orders";
+
 interface IAuthLogin {
   email: string;
   password: string;
@@ -25,7 +27,7 @@ export const checkResponse = (response: Response) => {
 };
 
 export const getIngredients = () => {
-  return fetch(`${NORMA_API}/ingredients`).then(checkResponse);
+  return fetch(INGREDIENTS).then(checkResponse);
 };
 
 export const refreshToken = () => {
@@ -40,19 +42,25 @@ export const refreshToken = () => {
   }).then(checkResponse);
 };
 
-export const fetchWithRefresh = async (url: string, options: any) => {
+export const fetchWithRefresh = async (url: string, options: RequestInit) => {
   try {
     const response = await fetch(url, options);
     return await checkResponse(response);
   } catch (error: any) {
-    if (error.message === "jwt expired") {
+    if ((error as Error).message === "jwt expired") {
       const refreshData = await refreshToken();
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       }
       localStorage.setItem("refreshToken", refreshData.refreshToken);
       localStorage.setItem("accessToken", refreshData.accessToken);
-      options.headers.authorization = refreshData.accessToken;
+      options = {
+        ...options,
+        headers: {
+          ...options?.headers,
+          authorization: refreshData.accessToken,
+        },
+      };
       const response = await fetch(url, options);
       return await checkResponse(response);
     } else {
@@ -66,7 +74,7 @@ export const setUser = (form: ISetUser) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken") || "",
     },
     body: JSON.stringify(form),
   });
@@ -77,7 +85,7 @@ export const getUser = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken") || "",
     },
   });
 };
@@ -155,4 +163,8 @@ export const authLogout = () => {
     referrerPolicy: "no-referrer",
     body: JSON.stringify({ token: localStorage.getItem("refreshToken") }),
   }).then(checkResponse);
+};
+
+export const getOrderRequest = async (url: string, id: string) => {
+  return await fetch(`${url}/${id}`).then(checkResponse);
 };
