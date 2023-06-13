@@ -12,17 +12,13 @@ const ProfileForm = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
 
-  const { values, setValues, handleChange } = useForm({
-    name: user.name,
-    email: user.email,
-    password: "",
-  });
-
   const defaultValues = {
-    name: user.name,
-    email: user.email,
+    name: user?.name || "",
+    email: user?.email || "",
     password: "",
   };
+
+  const { values, setValues, handleChange } = useForm(defaultValues);
 
   const handleReset = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -54,8 +50,8 @@ const ProfileForm = () => {
           placeholder="Пароль"
           extraClass="mt-6"
         />
-        {(values.name !== user.name ||
-          values.email !== user.email ||
+        {(values.name !== user?.name ||
+          values.email !== user?.email ||
           (values.password !== "*****" && values.password.length > 0)) && (
           <div className={`mt-6 ${styles.profile__buttons}`}>
             <Button htmlType="button" type="secondary" size="medium" onClick={handleReset}>

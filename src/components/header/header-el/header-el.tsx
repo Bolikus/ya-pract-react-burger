@@ -9,13 +9,11 @@ interface IHeaderElementProps {
 }
 
 function HeaderElement(props: IHeaderElementProps) {
+  const { linkTo, icon, text } = props;
   return (
-    <NavLink
-      to={props.linkTo}
-      className={({ isActive }) => (isActive ? heStyles.aButtonEnable : heStyles.aButtonDisable)}
-    >
-      {props.icon}
-      <span className="text text_type_main-default">{props.text}</span>
+    <NavLink to={linkTo} className={({ isActive }) => (isActive ? heStyles.aButtonEnable : heStyles.aButtonDisable)}>
+      {icon}
+      <span className="text text_type_main-default">{text}</span>
     </NavLink>
   );
 }

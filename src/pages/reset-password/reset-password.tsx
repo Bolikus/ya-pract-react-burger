@@ -8,9 +8,6 @@ import useForm from "../../hook/useForm";
 const ResetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // const [password, setPassword] = useState("");
-  // const [code, setCode] = useState("");
   const { values, handleChange } = useForm({ password: "", token: "" });
   const [message, setMessage] = useState<string | null>(null);
 
@@ -19,13 +16,6 @@ const ResetPassword = () => {
       navigate("/", { replace: true });
     }
   }, [navigate, location.state]);
-
-  // const onChangePassword = (e) => {
-  //   setPassword(e.target.value);
-  // };
-  // const onChangeCode = (e) => {
-  //   setCode(e.target.value);
-  // };
 
   const onSubmit = useCallback(
     (e: SyntheticEvent) => {

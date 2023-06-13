@@ -25,17 +25,13 @@ const IngredientItem = (props: IIngredientsItemProps): JSX.Element => {
   const burgerConstructor = useAppSelector((state) => state.burgerConstructor);
 
   const countBun = useMemo(() => {
-    //@ts-ignore
     if (burgerConstructor.bun !== null) {
-      //@ts-ignore
       return burgerConstructor.bun._id === ingredient._id ? 2 : 0;
     }
   }, [burgerConstructor, ingredient._id]);
 
   const countIngredients = useMemo(() => {
-    //@ts-ignore
     if (burgerConstructor.ingredients.length !== 0) {
-      //@ts-ignore
       const burgerConstructorIngredientsFilter = burgerConstructor.ingredients.filter(
         (item: IIngredient) => item._id === ingredient._id
       );
@@ -70,7 +66,7 @@ const IngredientItem = (props: IIngredientsItemProps): JSX.Element => {
       </div>
       <div className={Styles.ingredientsItem__name}>{ingredient.name}</div>
 
-      {count > 0 && (
+      {count !== undefined && (
         <div className={Styles.ingredientsItem__count}>
           <Counter count={count} size="default" extraClass="m-1" />
         </div>

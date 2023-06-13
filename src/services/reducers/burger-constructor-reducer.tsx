@@ -7,16 +7,31 @@ import {
   BURGER_CONSTRUCTOR_ADD_INGREDIENT,
   BURGER_CONSTRUCTOR_REMOVE_INGREDIENT,
   BURGER_CONSTRUCTOR_CHANGE_INGREDIENT,
+  TBurgerConstructorActions,
 } from "../actions/burger-constructor-actions";
 
-const initialState = {
+interface IIngredientAdd extends IIngredient {
+  uuid: string;
+}
+
+interface IInitialState {
+  isLoading: boolean;
+  hasError: boolean;
+  ingredients: IIngredientAdd[];
+  bun: IIngredient | null;
+}
+
+const initialState: IInitialState = {
   isLoading: false,
   hasError: false,
-  ingredients: [],
+  ingredients: [] as IIngredientAdd[],
   bun: null,
 };
 
-const burgerConstructorReducer = (state = initialState, action: any) => {
+const burgerConstructorReducer = (
+  state: IInitialState = initialState,
+  action: TBurgerConstructorActions
+): IInitialState => {
   switch (action.type) {
     case BURGER_CONSTRUCTOR_REQUEST: {
       return {
