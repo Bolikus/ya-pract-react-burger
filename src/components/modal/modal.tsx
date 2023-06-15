@@ -4,7 +4,7 @@ import ModalStyles from "./modal.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hook/hooks";
+import { useAppDispatch } from "../../hook/hooks";
 
 interface IModalProps {
   title?: string;
@@ -30,7 +30,7 @@ const Modal = (props: IModalProps) => {
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, onCloseAction]);
 
   return ReactDOM.createPortal(
     <>

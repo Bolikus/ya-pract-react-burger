@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useLocation, useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hook/hooks";
 import { CREATED, DONE, PENDING } from "../../pages/feed/feed";
 import { IIngredient } from "../../utils/types";
@@ -31,7 +30,7 @@ const OrderPage = () => {
     updatedAt: "",
     _id: "",
   });
-  const { ingredients, hasError, isLoading } = useAppSelector((state) => state.burgerIngredients);
+  const { ingredients } = useAppSelector((state) => state.burgerIngredients);
 
   const currentOrder = useAppSelector((state) => state.orderDetails.orderDetails);
 
@@ -82,7 +81,7 @@ const OrderPage = () => {
       return acc;
     }, {});
     return counts;
-  }, [currentOrder, orderIngredients]);
+  }, [order?.ingredients]);
 
   const orderSumm = useMemo(() => {
     let totalSumm = 0;
@@ -99,7 +98,7 @@ const OrderPage = () => {
     if (id) {
       dispatch(getOrder(id));
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <div className={styles.orderPage}>

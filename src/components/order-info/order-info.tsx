@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { IIngredient, IOrderInfo } from "../../utils/types";
 
@@ -17,9 +17,8 @@ interface IOrderInfoProps {
 }
 
 const OrderInfo = (props: IOrderInfoProps) => {
-  const { order, path } = props;
+  const { order } = props;
   const location = useLocation();
-  const navigate = useNavigate();
   const { ingredients } = useAppSelector((state) => state.burgerIngredients);
 
   const to = location.pathname === "/feed" ? `/feed/${order.number}` : `/profile/orders/${order.number}`;
@@ -54,7 +53,7 @@ const OrderInfo = (props: IOrderInfoProps) => {
 
   const ingredientsCount = useMemo(() => {
     return ingredientsUnique.length > 6 ? ingredientsUnique.length - 6 : 0;
-  }, [ingredientsList]);
+  }, [ingredientsUnique.length]);
 
   const summ = useMemo(() => {
     return orderIngredients.reduce((result, item) => result + item.price, 0);

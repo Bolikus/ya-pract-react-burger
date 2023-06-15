@@ -1,17 +1,9 @@
 import React, { useEffect, useMemo } from "react";
-
-import { v4 as uuidv4 } from "uuid";
-
 import OrderInfo from "../../components/order-info/order-info";
-
 import { useAppDispatch, useAppSelector } from "../../hook/hooks";
-
 import { WS_CONNECTION_END, WS_CONNECTION_START } from "../../services/actions/socket-actions";
-
 import { wsUrl } from "../../utils/api";
-
 import Preloader from "../../components/preloader/preloader";
-
 import styles from "./feed.module.css";
 
 export const DONE = "done";
