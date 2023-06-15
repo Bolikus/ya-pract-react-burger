@@ -3,7 +3,6 @@ import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-co
 import { burgerConstructorСheckout } from "../../../services/actions/order-details-actions";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hook/hooks";
-import Preloader from "../../preloader/preloader";
 
 interface IConstructorTotalProps {
   orderPrice: number;
@@ -12,7 +11,7 @@ interface IConstructorTotalProps {
 
 function ConstructorTotal(props: IConstructorTotalProps) {
   const { orderPrice = 0, orderIngredients } = props;
-  const { user, isLoading } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

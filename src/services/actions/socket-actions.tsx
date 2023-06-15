@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IPayload } from "../../utils/types";
 
 export const WS_CONNECTION_START = "WS_CONNECTION_START";
