@@ -54,7 +54,7 @@ function BurgerConstructor(props: IBurgerConstructorProps) {
   }, [burgerConstructor]);
 
   return (
-    <section className={`mt-25 ${Style.burger_constructor}`}>
+    <section className={`mt-25 ${Style.burger_constructor}`} data-test="burger-constructor">
       <ConstructorElements />
       <ConstructorTotal orderPrice={orderPrice} orderIngredients={orderIngredients} />
 

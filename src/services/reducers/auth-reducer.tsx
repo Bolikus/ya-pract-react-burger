@@ -21,21 +21,21 @@ import {
 
 import { IUser } from "../../utils/types";
 
-interface IInitialState {
+interface IInitialStateAuthReducer {
   user: IUser | null;
   isLoading: boolean;
   hasError: boolean;
   isAuthChecked: boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialStateAuthReducer = {
   user: null,
   isLoading: false,
   hasError: false,
   isAuthChecked: false,
 };
 
-const authReducer = (state = initialState, action: TAuthActions): IInitialState => {
+const authReducer = (state = initialState, action: TAuthActions): IInitialStateAuthReducer => {
   switch (action.type) {
     case AUTH_REGISTER_REQUEST: {
       return {

@@ -16,7 +16,7 @@ interface IInitialState {
   wsConnected: boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   orders: [],
   total: 0,
   totalToday: 0,

@@ -9,7 +9,7 @@ interface IConstructorDetailsProps {
 const OrderDetails = (props: IConstructorDetailsProps) => {
   const { orderId, orderName } = props;
   return (
-    <div className={`mt-20 mb-20 ${Styles.orderDetails}`}>
+    <div className={`mt-20 mb-20 ${Styles.orderDetails}`} data-test="order-details">
       <div className={`text text_type_digits-large ${Styles.orderDetails_id}`}>{orderId}</div>
       <div className={`mt-8 text text_type_main-medium ${Styles.orderDetails_title}`}>идентификатор заказа</div>
       <div className={`mt-15 ${Styles.orderDetails_image}`}>

@@ -36,8 +36,9 @@ function ConstructorElements() {
     <div
       ref={dropRef}
       className={`ml-4 mr-4 ${Styles.constructorElements} ${isHover ? Styles.constructorElements__hover : ""}`}
+      data-test="drop-area"
     >
-      <div className={Styles.constructorElements__bun}>
+      <div className={Styles.constructorElements__bun} data-test="bun-top">
         {burgerConstructor.bun !== null ? (
           <ConstructorElement
             type="top"
@@ -76,7 +77,10 @@ function ConstructorElements() {
         )}
       </div>
 
-      <div className={`${Styles.constructorElements__bun} ${Styles.constructorElements__bun_bottom}`}>
+      <div
+        className={`${Styles.constructorElements__bun} ${Styles.constructorElements__bun_bottom}`}
+        data-test="bun-bottom"
+      >
         {burgerConstructor.bun !== null ? (
           <ConstructorElement
             type="bottom"

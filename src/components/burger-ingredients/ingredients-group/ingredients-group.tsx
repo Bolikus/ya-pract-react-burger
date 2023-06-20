@@ -15,7 +15,7 @@ function IngredientsGroup(props: IIngredientsGroupProps) {
     <div className={Styles.burger_ingredients} id={idName}>
       <div className={`text_type_main-medium ${Styles.ingredients_group_name}`}>{typeName}</div>
 
-      <div className={`ml-4 mr-4 mt-6 ${Styles.ingredients_group_item}`}>
+      <div className={`ml-4 mr-4 mt-6 ${Styles.ingredients_group_item}`} data-test={typeName}>
         {ingredients.map((item) => {
           return <IngredientItem key={item._id} ingredient={item} />;
         })}

@@ -12,7 +12,7 @@ const ModalOverlay = (props: IModalOverlay) => {
     if (e.target === e.currentTarget) onOverlayClick();
   };
 
-  return <div className={ModalOverlayStyles.modalOverlay} onClick={handleClickOverlay}></div>;
+  return <div className={ModalOverlayStyles.modalOverlay} onClick={handleClickOverlay} data-test="close-overlay"></div>;
 };
 
 export default ModalOverlay;
