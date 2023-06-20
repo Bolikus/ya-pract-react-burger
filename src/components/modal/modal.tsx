@@ -34,11 +34,11 @@ const Modal = (props: IModalProps) => {
 
   return ReactDOM.createPortal(
     <>
-      <div className={ModalStyles.modal}>
+      <div className={ModalStyles.modal} data-test="modal">
         <div className={ModalStyles.modal_container}>
           <div className={ModalStyles.modal_block}>
             <div>
-              <button className={ModalStyles.modal_close} onClick={onCloseAction}>
+              <button className={ModalStyles.modal_close} onClick={onCloseAction} data-test="button-close">
                 <CloseIcon type="primary" />
               </button>
               {title && <div className={`mt-3 ml-15 text text_type_main-large`}>{title}</div>}

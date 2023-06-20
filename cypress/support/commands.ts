@@ -1,3 +1,4 @@
+export {};
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -35,3 +36,15 @@
 //     }
 //   }
 // }
+
+// @ts-ignore
+Cypress.Commands.add("seedAndVisit", () => {
+  // @ts-ignore
+  cy.intercept("GET", "https://norma.nomoreparties.space/api/ingredients", {
+    fixture: "ingredients",
+  });
+  // @ts-ignore
+  cy.visit("/");
+});
+// @ts-ignore
+Cypress.Commands.add("setLocalStorage", () => {});

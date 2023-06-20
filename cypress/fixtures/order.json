@@ -1,0 +1,91 @@
+{
+  "success": true,
+  "name": "Супер-дупер бургер!",
+  "order": {
+    "ingredients": [
+      {
+        "_id": "643d69a5c3f7b9001cfa093c",
+        "name": "Булка 1",
+        "type": "bun",
+        "proteins": 80,
+        "fat": 24,
+        "carbohydrates": 53,
+        "calories": 420,
+        "price": 1255,
+        "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
+        "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
+        "__v": 0
+      },
+      {
+        "_id": "643d69a5c3f7b9001cfa0946",
+        "name": "Test ingredient 1",
+        "type": "main",
+        "proteins": 808,
+        "fat": 689,
+        "carbohydrates": 609,
+        "calories": 986,
+        "price": 300,
+        "image": "https://code.s3.yandex.net/react/code/mineral_rings.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/mineral_rings-mobile.png",
+        "image_large": "https://code.s3.yandex.net/react/code/mineral_rings-large.png",
+        "__v": 0
+      },
+      {
+        "_id": "643d69a5c3f7b9001cfa0943",
+        "name": "Test ingredient 2",
+        "type": "sauce",
+        "proteins": 50,
+        "fat": 22,
+        "carbohydrates": 11,
+        "calories": 14,
+        "price": 80,
+        "image": "https://code.s3.yandex.net/react/code/sauce-04.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
+        "image_large": "https://code.s3.yandex.net/react/code/sauce-04-large.png",
+        "__v": 0
+      },
+      {
+        "_id": "643d69a5c3f7b9001cfa093e",
+        "name": "Test ingredient 3",
+        "type": "main",
+        "proteins": 44,
+        "fat": 26,
+        "carbohydrates": 85,
+        "calories": 643,
+        "price": 988,
+        "image": "https://code.s3.yandex.net/react/code/meat-03.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/meat-03-mobile.png",
+        "image_large": "https://code.s3.yandex.net/react/code/meat-03-large.png",
+        "__v": 0
+      },
+      {
+        "_id": "643d69a5c3f7b9001cfa093c",
+        "name": "Булка 1",
+        "type": "bun",
+        "proteins": 80,
+        "fat": 24,
+        "carbohydrates": 53,
+        "calories": 420,
+        "price": 1255,
+        "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+        "image_mobile": "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
+        "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
+        "__v": 0
+      }
+    ],
+    "_id": "645cbd208a4b62001c835efd",
+    "owner": {
+      "name": "Bulat",
+      "email": "gbulat86@yandex.ru",
+      "createdAt": "2023-05-21T10:02:08.847Z",
+      "updatedAt": "2023-05-21T10:02:08.955Z"
+    },
+    "status": "done",
+    "name": "Супер-дупер бургер Space burger!",
+    "createdAt": "2023-06-20T14:10:08.665Z",
+    "updatedAt": "2023-05-20T14:10:08.675Z",
+    "number": 7777,
+    "price": 3878
+  }
+}

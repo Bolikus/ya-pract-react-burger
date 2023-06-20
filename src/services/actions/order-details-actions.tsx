@@ -47,7 +47,7 @@ export const burgerConstructorСheckout = (order: string[]) => {
     const token = localStorage.getItem("accessToken");
     const accessToken = token?.split("Bearer ")[1];
 
-    fetch(`${NORMA_API}/orders?token=${accessToken}`, {
+    fetch(`${NORMA_API}/orders`, {
       method: "POST",
       body: JSON.stringify({ ingredients: order }),
       headers: {

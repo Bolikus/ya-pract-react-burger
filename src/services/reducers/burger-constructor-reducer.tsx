@@ -21,7 +21,7 @@ interface IInitialState {
   bun: IIngredient | null;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   isLoading: false,
   hasError: false,
   ingredients: [] as IIngredientAdd[],

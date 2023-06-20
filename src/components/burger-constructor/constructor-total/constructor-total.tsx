@@ -32,7 +32,7 @@ function ConstructorTotal(props: IConstructorTotalProps) {
         <CurrencyIcon type="primary" />
       </div>
       <div className="mr-8">
-        <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal}>
+        <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal} data-test="order-button">
           Оформить заказ
         </Button>
       </div>
